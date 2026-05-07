@@ -14,3 +14,30 @@ export const getNoteById = async (req, res) => {
   }
   res.json(noteById);
 };
+
+export const addNotes = async (req, res) => {
+  const newNote = await Note.create(req.body);
+  res.status(201).json(newNote);
+};
+
+export const updateNoteById = async (req, res) => {
+  const { id: _id } = req.params.noteId;
+  const updateNote = await Note.findByIdAndUpdate({ _id }, req.body, {
+    returnDocument: 'after',
+  });
+  if (!updateNote) {
+    throw createHttpError(404, `Note with ${_id} not found`);
+  }
+  res.json(updateNote);
+};
+
+export const deleteNoteById = async (req, res) => {
+  const { id: _id } = req.params.noteId;
+  const deleteNote = await Note.findByIdAndDelete({ _id });
+  if (!deleteNote) {
+    throw createHttpError(404, `Note with ${_id} not found`);
+  }
+  res.json({
+    message: 'Delete successfully',
+  });
+};
