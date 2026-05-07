@@ -1,0 +1,32 @@
+import { Schema, model } from 'mongoose';
+
+const notesSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  content: {
+    type: String,
+    trim: true,
+  },
+  tag: {
+    type: String,
+    enum: [
+      'Work',
+      'Personal',
+      'Meeting',
+      'Shopping',
+      'Ideas',
+      'Travel',
+      'Finance',
+      'Health',
+      'Important',
+      'Todo',
+    ],
+    default: 'Todo',
+  },
+});
+
+const Note = model('note', notesSchema);
+export default Note;
