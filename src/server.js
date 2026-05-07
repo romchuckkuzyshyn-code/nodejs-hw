@@ -6,6 +6,9 @@ import logger from './middlewares/logger.js';
 import NotFoundHandler from './middlewares/NotFoundHandler.js';
 import ErrorHandler from './middlewares/ErrorHandler.js';
 import notesRouter from './routes/notesRoutes.js';
+import dns from 'dns';
+
+dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 const app = express();
 const corsMiddleware = cors();
