@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import connectDatabase from './db/connectMongoDB.js';
-import logger from './middleware/logger.js';
-import NotFoundHandler from './middleware/notFoundHandler.js';
-import ErrorHandler from './middleware/errorHandler.js';
+import { connectMongoDB } from './db/connectMongoDB.js';
+import { logger } from './middleware/logger.js';
+import { notFoundHandler } from './middleware/notFoundHandler.js';
+import { errorHandler } from './middleware/errorHandler.js';
 import notesRouter from './routes/notesRoutes.js';
 import dns from 'dns';
 
@@ -19,10 +19,10 @@ app.use(corsMiddleware);
 app.use(logger);
 app.use('/notes', notesRouter);
 
-app.use(NotFoundHandler);
+app.use(notFoundHandler);
 
-app.use(ErrorHandler);
+app.use(errorHandler);
 
-await connectDatabase();
+await connectMongoDB();
 
 app.listen(port, () => console.log(`server running on ${port} port`));

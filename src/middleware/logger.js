@@ -1,6 +1,6 @@
 import pino from 'pino-http';
 
-const logger = pino({
+export const logger = pino({
   target: 'pino-pretty',
   options: {
     colorize: true,
@@ -10,5 +10,3 @@ const logger = pino({
     hideObject: true,
   },
 });
-
-export default logger;

@@ -1,22 +1,22 @@
 import { Router } from 'express';
 import {
-  addNotes,
+  createNote,
+  getAllNotes,
   getNoteById,
-  getNotes,
-  updateNoteById,
-  deleteNoteById,
+  updateNote,
+  deleteNote,
 } from '../controllers/notesController.js';
 
 const notesRouter = Router();
 
-notesRouter.get('/', getNotes);
+notesRouter.get('/', getAllNotes);
 
 notesRouter.get('/:noteId', getNoteById);
 
-notesRouter.post('/', addNotes);
+notesRouter.post('/', createNote);
 
-notesRouter.patch('/:noteId', updateNoteById);
+notesRouter.patch('/:noteId', updateNote);
 
-notesRouter.delete('/:noteId', deleteNoteById);
+notesRouter.delete('/:noteId', deleteNote);
 
 export default notesRouter;
