@@ -22,6 +22,7 @@ const notesSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
+notesSchema.index({ tag: 1 });
 notesSchema.index({ title: 'text', content: 'text' });
 
 const Note = model('note', notesSchema);
