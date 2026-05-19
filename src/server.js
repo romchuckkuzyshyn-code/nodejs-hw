@@ -8,6 +8,8 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import notesRouter from './routes/notesRoutes.js';
 import dns from 'dns';
+import authRoutes from './routes/authRoutes.js';
+import cookieParser from 'cookie-parser';
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -17,9 +19,10 @@ const port = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 app.use(corsMiddleware);
+app.use(cookieParser);
 app.use(logger);
+app.use(authRoutes);
 app.use('/notes', notesRouter);
-
 app.use(notFoundHandler);
 
 app.use(errors());
