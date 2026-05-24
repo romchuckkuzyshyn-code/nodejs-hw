@@ -19,9 +19,9 @@ const port = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 app.use(corsMiddleware);
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(logger);
-app.use(authRoutes);
+app.use('/auth', authRoutes);
 app.use('/notes', notesRouter);
 app.use(notFoundHandler);
 
