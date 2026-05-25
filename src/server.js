@@ -10,6 +10,7 @@ import notesRouter from './routes/notesRoutes.js';
 import dns from 'dns';
 import authRoutes from './routes/authRoutes.js';
 import cookieParser from 'cookie-parser';
+import userRoutes from './routes/userRoutes.js';
 
 dns.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -23,6 +24,8 @@ app.use(cookieParser());
 app.use(logger);
 app.use('/auth', authRoutes);
 app.use('/notes', notesRouter);
+app.use('/users', userRoutes);
+
 app.use(notFoundHandler);
 
 app.use(errors());
